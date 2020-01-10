@@ -4,12 +4,17 @@ Skipping doc2vec process for now...
 
 This kaggle dataset has document vectors and readership: https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom
 
+To do:
+- Figure out how to define discrete user "interests"
+  - on a per-user basis?
+  - based on clustering algo on all documents?
+
+
 Bucketed Random Projection
-Locality-Sensitive Hashing
+Locality-Sensitive Hashing - check out blog post from Uber
 SGNS Algorithm
 T-SNE Dimensionality Reduction
 Latent Dirichlet Allocation (LDA)
-
 
 
 
