@@ -10,6 +10,7 @@ To do:
   - based on clustering algo on all documents?
 - figure out algorithm #5
   - multi-label SVM?
+    - https://stackoverflow.com/questions/49465891/building-an-svm-with-tensorflow
 
 
 Bucketed Random Projection
