@@ -7,15 +7,14 @@ This kaggle dataset has document vectors and readership: https://www.kaggle.com/
 Research:
 - http://www.ee.columbia.edu/~ronw/pubs/recsys2013-usermax.pdf
 
-To do:
-- Figure out how to define discrete user "interests", and thus, user embeddings per interest
-  - on a per-user basis?
-  - based on clustering algo on all documents?
+<b> Interests are defined on a user-by-user basis, up to <i>T</i> interests. </b>
   
   Progress:
     - full rank vs low rank matrix
       https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/null-column-space/v/dimension-of-the-column-space-or-rank
     - low rank factorization
+- User interest partitioning
+  - 
     
     The key idea of the proposed model is to define T interest
 vectors per user, where the user part of the model is written
