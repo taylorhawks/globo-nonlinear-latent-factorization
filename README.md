@@ -23,15 +23,7 @@ on Computer Science and Computational Technology (ISCSCT’08), pages 727–731,
 2008
 
 #### From the NLF article:
-    The key idea of the proposed model is to define T interest
-vectors per user, where the user part of the model is written
-as Uˆ which is an m × |U| × T tensor. Hence, we also write
-Uˆiu ∈ R
-m as the m-dimensional vector that represents the
-i
-th of T possible interests for user u. The item part of the
-model is the same as in the classical user-item factorization
-models, and is still denoted as a m×|D| matrix V.
+    The key idea of the proposed model is to define T interest vectors per user, where the user part of the model is written as Uˆ which is an m × |U| × T tensor. Hence, we also write Uˆiu ∈ R m as the m-dimensional vector that represents the ith of T possible interests for user u. The item part of the model is the same as in the classical user-item factorization models, and is still denoted as a m×|D| matrix V.
   
   
   
