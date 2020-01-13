@@ -4,6 +4,9 @@ Skipping doc2vec process for now...
 
 This kaggle dataset has document vectors and readership: https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom
 
+Research:
+- http://www.ee.columbia.edu/~ronw/pubs/recsys2013-usermax.pdf
+
 To do:
 - Figure out how to define discrete user "interests", and thus, user embeddings per interest
   - on a per-user basis?
