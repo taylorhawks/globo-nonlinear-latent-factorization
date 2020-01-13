@@ -22,6 +22,10 @@ based on user’s interest partition. In Proceedings of the 2008 International S
 on Computer Science and Computational Technology (ISCSCT’08), pages 727–731,
 2008
 
+
+#### THIS COULD BE THE ANSWER
+https://www.researchgate.net/publication/221324580_A_New_Effective_Collaborative_Filtering_Algorithm_Based_on_User's_Interest_Partition
+
 #### From the NLF article:
     The key idea of the proposed model is to define T interest vectors per user, where the user part of the model is written as Uˆ which is an m × |U| × T tensor. Hence, we also write Uˆiu ∈ R m as the m-dimensional vector that represents the ith of T possible interests for user u. The item part of the model is the same as in the classical user-item factorization models, and is still denoted as a m×|D| matrix V.
   
