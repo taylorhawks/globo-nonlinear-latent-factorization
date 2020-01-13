@@ -14,6 +14,7 @@ To do:
   
   Progress:
     - full rank vs low rank matrix
+      https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/null-column-space/v/dimension-of-the-column-space-or-rank
     - low rank factorization
     
     The key idea of the proposed model is to define T interest
