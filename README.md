@@ -14,8 +14,15 @@ Research:
       https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/null-column-space/v/dimension-of-the-column-space-or-rank
     - low rank factorization
 ## User interest partitioning - how???
-  - 
-    
+
+
+#### Possible lead:
+H. Keqin, H. Liang, and X. Weiwei. A new effective collaborative filtering algorithm
+based on user’s interest partition. In Proceedings of the 2008 International Symposium
+on Computer Science and Computational Technology (ISCSCT’08), pages 727–731,
+2008
+
+#### From the NLF article:
     The key idea of the proposed model is to define T interest
 vectors per user, where the user part of the model is written
 as Uˆ which is an m × |U| × T tensor. Hence, we also write
