@@ -1,5 +1,10 @@
 # globo-nonlinear-latent-factorization
 
+### To-Do:
+- Hold off on KNN or ANN for now
+- Next step: generate user embeddings for training set
+
+
 Skipping doc2vec process for now...
 
 This kaggle dataset has document vectors and readership: https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom
