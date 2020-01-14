@@ -2,7 +2,7 @@
 
 ### To-Do:
 - Hold off on KNN or ANN for now
-- Next step: generate user embeddings for training set
+- Next step: generate user embeddings for training set - model 3
 
 
 Skipping doc2vec process for now...
