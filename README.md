@@ -22,6 +22,11 @@ based on user’s interest partition. In Proceedings of the 2008 International S
 on Computer Science and Computational Technology (ISCSCT’08), pages 727–731,
 2008
 
+#### Other leads
+- https://www.patrickbaudisch.com/interactingwithrecommendersystems/WorkingNotes/RaminYasdiAcquisitionOfUsersInterests.pdf
+- https://www.researchgate.net/profile/Doreen_Cheng2/publication/266887747_Situation-aware_User_Interest_Mining_on_Mobile_Handheld_Devices/links/546e31b80cf2b5fc17606f8c.pdf
+- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.302.451&rep=rep1&type=pdf
+
 
 #### THIS COULD BE THE ANSWER
 https://www.researchgate.net/publication/221324580_A_New_Effective_Collaborative_Filtering_Algorithm_Based_on_User's_Interest_Partition
