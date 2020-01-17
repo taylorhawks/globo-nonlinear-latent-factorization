@@ -3,6 +3,7 @@
 ### To-Do:
 - Hold off on KNN or ANN for now
 - Translate L-function and rank equation from paper into binary scoring for read vs random (d vs d-bar) ((Model 1)).  Check the paper and whiteboard for step-by-step explanation of SGD and modify to fit scoring needs.
+  - DONE! It's literally just 1.  Wow.
 - Do the above again for Model 2.
 
 Skipping doc2vec process for now...
