@@ -1,8 +1,10 @@
 # globo-nonlinear-latent-factorization
 
 ### To-Do:
-- Regularize SGD for simple model (piecewise function)
-- Map out pipeline for clustered model
+- Whiteboarding Finished!!
+- Fix sampling - maybe need larger sample sizes?
+- Code Linear Model
+- Code Nonlinear Model
 
 Skipping doc2vec process for now...
 
@@ -17,7 +19,10 @@ Research:
     - full rank vs low rank matrix
       https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/null-column-space/v/dimension-of-the-column-space-or-rank
     - low rank factorization
-## User interest partitioning - how???
+
+## User interest partitioning
+1. User-by-user clustering
+2. Interest unit optimiztion through SGD
 
 
 #### Possible lead:
