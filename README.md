@@ -4,6 +4,7 @@
 - Whiteboarding Finished!!
 - Fix sampling - maybe need larger sample sizes?
 - Code Linear Model
+  - vectorize random unseen sampling
 - Code Nonlinear Model
 
 Skipping doc2vec process for now...
