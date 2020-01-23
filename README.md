@@ -2,10 +2,19 @@
 
 ### To-Do:
 - Whiteboarding Finished!!
-- Fix sampling - maybe need larger sample sizes?
 - Code Linear Model
-  - vectorize random unseen sampling
+  - Fix Vd reshape for J calculation (necessary for SGD validation)
+  - Code SGD
+  - Test pipeline
 - Code Nonlinear Model
+  - Inherit as much as possible from LinearModel parent class
+
+
+ |\__/,|   (`\
+ |_ _  |.--.) )
+ ( T   )     /
+(((^_(((/(((_/
+
 
 Skipping doc2vec process for now...
 
@@ -16,10 +25,6 @@ Research:
 
 <b> Interests are defined on a user-by-user basis, up to <i>T</i> interests. </b>
   
-  Progress:
-    - full rank vs low rank matrix
-      https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/null-column-space/v/dimension-of-the-column-space-or-rank
-    - low rank factorization
 
 ## User interest partitioning
 1. User-by-user clustering
