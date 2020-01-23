@@ -10,8 +10,7 @@
   - Inherit as much as possible from LinearModel parent class
 
 
-~~~~~~~~~~~~~~~
-
+---
 
 Skipping doc2vec process for now...
 
