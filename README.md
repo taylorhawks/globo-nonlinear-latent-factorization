@@ -10,10 +10,7 @@
   - Inherit as much as possible from LinearModel parent class
 
 
- |\__/,|   (`\
- |_ _  |.--.) )
- ( T   )     /
-(((^_(((/(((_/
+~~~~~~~~~~~~~~~
 
 
 Skipping doc2vec process for now...
