@@ -3,9 +3,8 @@
 ### To-Do:
 - Whiteboarding Finished!!
 - Code Linear Model
+  - wrap SGD function and use TQDM
   - Fix Vd reshape for J calculation (necessary for SGD validation)
-  - Code SGD
-  - Test pipeline
 - Code Nonlinear Model
   - Inherit as much as possible from LinearModel parent class
 
