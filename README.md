@@ -38,8 +38,13 @@ Skipping the first step (for now), I've chosen a dataset from kaggle with user i
 
 ### Model 1 - Linear Latent Factorization
 
+#### Pipeline Notes
+#### Evaluation
 
-
+### Model 2 - Nonlinear Latent Factorization
+#### Pipeline Notes
+#### Evaluation
+---
 
 
 ### To-Do:
