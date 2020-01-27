@@ -35,23 +35,27 @@ _description_
 <img src = 'img/math/modified_cost_function.png'/>
 _description_
 
-### Linear Model
+### Linear Model (Model 1)
 #### Gradient
-<img></img>
+<img src = 'img/math/gradient_linear.png'/>
 _description_
 
 #### Gradient Descent - User Vector Update
-<img></img>
+<img src = 'img/math/user_update_linear.png'/>
 _description_
 
-### Nonlinear Model
+### Nonlinear Model (Model 2)
 #### Gradient
-<img></img>
+<img src = 'img/math/gradient_nonlinear.png'/>
 _description_
 
 #### Gradient Descent - User Vector Update
-<img></img>
+<img src = 'img/math/user_update_nonlinear.png'/>
 _description_
+
+
+
+
 
 
 
