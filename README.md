@@ -26,12 +26,17 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 
 ## Some Math
 ### Variable Glossary
-| name | definition      |   | name | definition      |
-|------|-----------------|---|------|-----------------|
-| var1 | var1 definition |   | var5 | var5 definition |
-| var2 | var2 definition |   | var6 | var6 definition |
-| var3 | var3 definition |   | var7 | var7 definition |
-| var4 | var4 definition |   | var8 | var8 definition |
+| variable | definition                                                                              |
+|----------|-----------------------------------------------------------------------------------------|
+| U        | All users                                                                               |
+| u        | Single user                                                                             |
+| i        | Interest unit                                                                           |
+| T        | Number of discrete user interests (don't confuse this with the vector transpose symbol) |
+| f        | Scoring function                                                                        |
+| L        | function which weights a user's rank of an item                                         |
+| V        | Item vectors                                                                            |
+| J        | cost/objective function                                                                 |
+| alpha    | Gradient descent learning rate                                                          |
 
 #### Linear Scoring Model
 <img src = 'img/math/linear_scoring_model.png'/>
