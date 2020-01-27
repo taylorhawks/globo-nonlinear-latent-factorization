@@ -8,7 +8,7 @@ The starting point for the idea of a content-based recommendation system based o
 From the paper:
 > The key idea of the proposed model is to define T interest vectors per user, where the user part of the model is written as Uˆ which is an m × |U| × T tensor. Hence, we also write Uˆiu ∈ R m as the m-dimensional vector that represents the ith of T possible interests for user u. The item part of the model is the same as in the classical user-item factorization models, and is still denoted as a m×|D| matrix V.
 
-This is a bit abstract still, but makes more sense in the context of content-based recommendations.   The original paper optimizes both User and Item vectors to get the best user-item pairings, in the typical style of a fully collaborative recommendation system.  Instead, this project uses doc2vec-generated item vectors so that the original relative meaning between items-based on their actual content-is not lost.
+This is a bit abstract still, but makes more sense in the context of content-based recommendations.   The original paper optimizes both User and Item vectors to get the best user-item pairings, in the typical style of a fully collaborative recommendation system enabled by matrix decomposition.  Instead, my project uses doc2vec-generated item vectors so that the original relative meaning between items, based on their actual content, is not lost.
 
 ---
 
@@ -23,19 +23,19 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 
 #### Linear Scoring Model
 <img src = 'img/math/linear_scoring_model.png'/>
-_description_
+The basic scoring evaluates vector similarity using dot product.  This is inspried by document similarity in doc2vec.  A bigger dot product means that vectors are more similar.
 
 #### Nonlinear Scoring Model
 <img src = 'img/math/nonlinear_scoring_model.png'/>
-_description_
+Each user interest vector, _i_ is considered for the nonlinear scoring model.  Only the best vector is chosen for the nonlinear scoring model.
 
 #### Original Cost Function
 <img src = 'img/math/cost_function.png'/>
-_description_
+Above is the original cost funciton from (Weston 2008) which is actually borrowed from an earlier paper, also by Weston and his Google colleagues.  Notice that it is adapatble for both scoring models.  The L(_rank_(d)) function allows for weighting a user's ranking systems in order to tweak bias in the model.  However, this is not actually useful for a binary ranking system (like in this project), as it is constant.  The "1+... term is used to implement "hinge" loss, and is useful as a form of regularization in gradient descent.
 
 #### Modified Cost Function
 <img src = 'img/math/modified_cost_function.png'/>
-_description_
+As stated above, L(_rank_(d)) cancels out and is not relevant for the purposes of this particular project.
 
 ---
 
