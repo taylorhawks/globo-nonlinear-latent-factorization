@@ -1,4 +1,16 @@
-# Nonlinear Latent Factorization
+# Nonlinear Latent Factorization (Work In Progress)
+
+### To-Do:
+- Whiteboarding Finished!!
+- Code Linear Model
+  - Optional but should do: Variable sizes per user (maybe do this at the end)
+  - Optional: Use TQDM for GD function
+  - Optional: Adaptive learning rate
+  - Train/test validation
+- Code Nonlinear Model
+  - Inherit as much as possible from LinearModel parent class
+  - Cluster initialization
+  - Max-nonlinearity
 
 ## Introduction
 This project was inspired by research done at [Condé Nast](https://www.condenast.com/) presented at an event by [Dataiku](https://www.dataiku.com/) on October 23, 2019.
@@ -31,33 +43,33 @@ Each user interest vector, _i_ is considered for the nonlinear scoring model.  O
 
 #### Original Cost Function
 <img src = 'img/math/cost_function.png'/>
-Above is the original cost funciton from (Weston 2008) which is actually borrowed from an earlier paper, also by Weston and his Google colleagues.  Notice that it is adapatble for both scoring models.  The L(_rank_(d)) function allows for weighting a user's ranking systems in order to tweak bias in the model.  However, this is not actually useful for a binary ranking system (like in this project), as it is constant.  The "1+... term is used to implement "hinge" loss, and is useful as a form of regularization in gradient descent.
+Above is the original cost funciton from (Weston 2013) which is actually borrowed from an earlier paper, also by Weston and his Google colleagues, written in 2008.  Notice that it is adapatble for both scoring models.  The L(rank(d)) function allows for weighting a user's ranking systems in order to tweak bias in the model.  However, this is not actually useful for a binary ranking system (like in this project), as it is constant.  The "1+... term is used to implement "hinge" loss, and is useful as a form of regularization in gradient descent.
 
 #### Modified Cost Function
 <img src = 'img/math/modified_cost_function.png'/>
-As stated above, L(_rank_(d)) cancels out and is not relevant for the purposes of this particular project.
+As stated above, L(rank(d)) cancels out and is not relevant for the purposes of this particular project.
 
 ---
 
 ### Linear Model (Model 1)
 #### Gradient
 <img src = 'img/math/gradient_linear.png'/>
-_description_
+The gradient is found by taking the partial derivative of the objective funciton with respect to a user's vector.
 
 #### Gradient Descent - User Vector Update
 <img src = 'img/math/user_update_linear.png'/>
-_description_
+User vectors are updated using the gradient above.  (Weston 2013) describes a process for stochastic gradient descent (SGD) which is not exactly relevant for the purposes of this project since the item vectors, V, are static and predetermined by doc2vec rather than objective function minimization.  I used mini-batch gradient descent instead, in part substituting vectorized tensor orperations for iterative functions.
 
 ---
 
 ### Nonlinear Model (Model 2)
 #### Gradient
-<img src = 'img/math/gradient_nonlinear.png'/>
-_description_
+!!! Fix equation !!!
+The gradient for the nonlinear funciton is similar to the lienar model, but uses the particular interest unit per user which is most relevant to the selected relevant item d.
 
 #### Gradient Descent - User Vector Update
 <img src = 'img/math/user_update_nonlinear.png'/>
-_description_
+The equation above describes the update process for the particular interest unit i for a given user U_u.  Note that only one interest unit is updated per instance of this equation while the others are ignored.
 
 
 
@@ -88,17 +100,6 @@ Skipping the first step (for now), I've chosen a dataset from kaggle with user i
 ---
 
 
-### To-Do:
-- Whiteboarding Finished!!
-- Code Linear Model
-  - Optional but should do: Variable sizes per user (maybe do this at the end)
-  - Optional: Use TQDM for GD function
-  - Optional: Adaptive learning rate
-  - Train/test validation
-- Code Nonlinear Model
-  - Inherit as much as possible from LinearModel parent class
-  - Cluster initialization
-  - Max-nonlinearity
 
 
 ---
