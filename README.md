@@ -88,7 +88,26 @@ The equation above describes the update process for the particular interest unit
 
 # Project Outline
 
-Skipping the first step (for now), I've chosen a [dataset from kaggle](https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom) with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length *m* = 250.
+Skipping the first step (for now), I've chosen a [dataset from kaggle](https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom) with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length _m_ = 250.
+
+#### Data Summary
+- Vector size (m): 250
+- Unique articles: 364,047
+- Relevant Articles: 46,033
+- Unique users: 322,897
+- User-article interactions: 2,951,986
+
+<img src='img/article_clicks.png'/>
+
+<img src='img/clicks_per_user.png'/>
+
+The graph below shows th cumulative number of users who have read at least n articles (articles on x-axis, users on y-axis.)
+
+<img src='img/cumulative_clicks_per_user.png'/>
+
+I used this to pick n>=10 and used 8 for the training set.
+
+
 
 ## Model 1 - Linear Latent Factorization
 ### Pipeline Notes
