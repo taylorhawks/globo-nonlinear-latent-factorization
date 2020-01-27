@@ -32,6 +32,11 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 | u        | Single user                                                                             |
 | i        | Interest unit                                                                           |
 | T        | Number of discrete user interests (don't confuse this with the vector transpose symbol) |
+| V        | Item vectors                                                                            |
+| D        | Corpus (all items)                                                                      |
+| D_u      | Items relevant to a user                                                                |
+| d        | Item relevant to a user                                                                 |
+| d-bar    | Item irrelevant to a user                                                               |
 | f        | Scoring function                                                                        |
 | L        | function which weights a user's rank of an item                                         |
 | V        | Item vectors                                                                            |
