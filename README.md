@@ -91,11 +91,11 @@ The equation above describes the update process for the particular interest unit
 Skipping the first step (for now), I've chosen a [dataset from kaggle](https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom) with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length *m* = 250.
 
 ## Model 1 - Linear Latent Factorization
-
 ### Pipeline Notes
 ### Evaluation
+<img src='img/gradient_descent.png'/>
 
-### Model 2 - Nonlinear Latent Factorization
+## Model 2 - Nonlinear Latent Factorization
 ### Pipeline Notes
 #### User interest partitioning
 1. User-by-user clustering
