@@ -59,6 +59,8 @@ Above is the original cost funciton from (Weston 2013) which is actually borrowe
 
 The L(rank(d)) function allows for weighting a user's ranking systems in order to tweak bias in the model.  However, this is not actually useful for a binary ranking system (like in this project), as it is constant.  The "1+... term is used to implement "hinge" loss, and is useful as a form of regularization in gradient descent.
 
+Using this equation with the nonlinear scoring model allows for a type of "max-based" nonlinearity.
+
 #### Modified Cost Function
 <img src = 'img/math/modified_cost_function.png'/>
 As stated above, L(rank(d)) cancels out and is not relevant for the purposes of this particular project.
