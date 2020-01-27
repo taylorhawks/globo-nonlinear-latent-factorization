@@ -3,10 +3,14 @@
 ### To-Do:
 - Whiteboarding Finished!!
 - Code Linear Model
-  - wrap SGD function and use TQDM
-  - Fix Vd reshape for J calculation (necessary for SGD validation)
+  - Optional but should do: Variable sizes per user (maybe do this at the end)
+  - Optional: Use TQDM for GD function
+  - Optional: Adaptive learning rate
+  - Train/test validation
 - Code Nonlinear Model
   - Inherit as much as possible from LinearModel parent class
+  - Cluster initialization
+  - Max-nonlinearity
 
 
 ---
