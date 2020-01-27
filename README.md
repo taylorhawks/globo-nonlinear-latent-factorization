@@ -45,11 +45,11 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 
 #### Linear Scoring Model
 <img src = 'img/math/linear_scoring_model.png'/>
-The basic scoring evaluates vector similarity using dot product.  This is inspried by document similarity in doc2vec.  A bigger dot product means that vectors are more similar.
+The basic scoring evaluates vector similarity using dot product.  This is inspried by document similarity in doc2vec.  A bigger dot product means that vectors are more similar.  This equation will be used to evaluate model 1.
 
 #### Nonlinear Scoring Model
 <img src = 'img/math/nonlinear_scoring_model.png'/>
-Each user interest vector, _i_ is considered for the nonlinear scoring model.  Only the best vector is chosen for the nonlinear scoring model.
+Each user interest vector, _i_ is considered for the nonlinear scoring model.  Only the best vector is chosen for the nonlinear scoring model.  This equation will be used to evaluate model 2.
 
 #### Original Cost Function
 <img src = 'img/math/cost_function.png'/>
