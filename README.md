@@ -1,4 +1,45 @@
-# globo-nonlinear-latent-factorization
+# Nonlinear Latent Factorization
+
+## Introduction
+This project was inspired by research done at [Condé Nast](https://www.condenast.com/) presented at an event by [Dataiku](https://www.dataiku.com/) on October 23, 2019.
+
+The starting point for the idea of a content-based recommendation system based on Nonlinear Latent Factorization (NLF) is a paper by [Weston et. al. (2013)](https://www.researchgate.net/publication/262245974_Nonlinear_latent_factorization_by_embedding_multiple_user_interests) in which they describe a system of using multiple "interest units" to describe each user and differentiating between them by only using the one providing the best user-item relationship while ignoring the others.
+
+This is a bit abstract still, but makes more sense in the context of content-based recommendations.   The original paper optimizes both User and Item vectors to get the best user-item pairings, in the typical style of a fully collaborative recommendation system.  Instead, this project uses doc2vec-generated item vectors so that the original relative meaning between items--based on their actual content--is not lost.
+
+## Some Math
+### Variable Glossary
+| var1 | var1 definition |   | var5 | var5 definition |
+|------|-----------------|---|------|-----------------|
+| var2 | var2 definition |   | var6 | var6 definition |
+| var3 | var3 definition |   | var7 | var7 definition |
+| var4 | var4 definition |   | var8 | var8 definition |
+
+### Original Cost Function
+<img></img>
+_description_
+
+### Modified Cost Function
+<img></img>
+_description_
+
+### Gradient
+<img></img>
+_description_
+
+### Gradient Descent - User Vector Update
+<img></img>
+_description_
+
+## Project Outline
+
+Skipping the first step (for now), I've chosen a dataset from kaggle with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length *m* = 250.
+
+### Model 1 - Linear Latent Factorization
+
+
+
+
 
 ### To-Do:
 - Whiteboarding Finished!!
