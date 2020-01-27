@@ -43,7 +43,8 @@ Each user interest vector, _i_ is considered for the nonlinear scoring model.  O
 
 #### Original Cost Function
 <img src = 'img/math/cost_function.png'/>
-Above is the original cost funciton from (Weston 2013) which is actually borrowed from an earlier paper, also by Weston and his Google colleagues, written in 2008.  Notice that it is adapatble for both scoring models.  The L(rank(d)) function allows for weighting a user's ranking systems in order to tweak bias in the model.  However, this is not actually useful for a binary ranking system (like in this project), as it is constant.  The "1+... term is used to implement "hinge" loss, and is useful as a form of regularization in gradient descent.
+Above is the original cost funciton from (Weston 2013) which is actually borrowed from an earlier paper, also by Weston and his Google colleagues, written in 2008.  Notice that it is adapatble for both scoring models.  It breaks down like this: A partial cost is evaluated for each user, for each item _d_ relevant to that user from the whole corupus _D_, and each item irrelevant to that user _d-bar_.  The sum of all of these pieces composites an overall cost function.
+The L(rank(d)) function allows for weighting a user's ranking systems in order to tweak bias in the model.  However, this is not actually useful for a binary ranking system (like in this project), as it is constant.  The "1+... term is used to implement "hinge" loss, and is useful as a form of regularization in gradient descent.
 
 #### Modified Cost Function
 <img src = 'img/math/modified_cost_function.png'/>
@@ -72,97 +73,26 @@ The gradient for the nonlinear funciton is similar to the lienar model, but uses
 The equation above describes the update process for the particular interest unit i for a given user U_u.  Note that only one interest unit is updated per instance of this equation while the others are ignored.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Project Outline
 
-Skipping the first step (for now), I've chosen a dataset from kaggle with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length *m* = 250.
+Skipping the first step (for now), I've chosen a [dataset from kaggle](https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom) with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length *m* = 250.
 
-### Model 1 - Linear Latent Factorization
+## Model 1 - Linear Latent Factorization
 
-#### Pipeline Notes
-#### Evaluation
+### Pipeline Notes
+### Evaluation
 
 ### Model 2 - Nonlinear Latent Factorization
-#### Pipeline Notes
-#### Evaluation
----
-
-
-
-
----
-
-Skipping doc2vec process for now...
-
-This kaggle dataset has document vectors and readership: https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom
-
-Research:
-- http://www.ee.columbia.edu/~ronw/pubs/recsys2013-usermax.pdf
-
-<b> Interests are defined on a user-by-user basis, up to <i>T</i> interests. </b>
-  
-
-## User interest partitioning
+### Pipeline Notes
+#### User interest partitioning
 1. User-by-user clustering
 2. Interest unit optimiztion through SGD
 
+#### Evaluation
+---
 
-#### Possible lead:
-H. Keqin, H. Liang, and X. Weiwei. A new effective collaborative filtering algorithm
-based on user’s interest partition. In Proceedings of the 2008 International Symposium
-on Computer Science and Computational Technology (ISCSCT’08), pages 727–731,
-2008
-
-#### Other leads
-- https://www.patrickbaudisch.com/interactingwithrecommendersystems/WorkingNotes/RaminYasdiAcquisitionOfUsersInterests.pdf
-- https://www.researchgate.net/profile/Doreen_Cheng2/publication/266887747_Situation-aware_User_Interest_Mining_on_Mobile_Handheld_Devices/links/546e31b80cf2b5fc17606f8c.pdf
-- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.302.451&rep=rep1&type=pdf
-
-
-#### THIS COULD BE THE ANSWER
-https://www.researchgate.net/publication/221324580_A_New_Effective_Collaborative_Filtering_Algorithm_Based_on_User's_Interest_Partition
-
-#### From the NLF article:
-    The key idea of the proposed model is to define T interest vectors per user, where the user part of the model is written as Uˆ which is an m × |U| × T tensor. Hence, we also write Uˆiu ∈ R m as the m-dimensional vector that represents the ith of T possible interests for user u. The item part of the model is the same as in the classical user-item factorization models, and is still denoted as a m×|D| matrix V.
-  
-  
-  
-- figure out algorithm #5
-  - multi-label SVM?
-    - https://stackoverflow.com/questions/49465891/building-an-svm-with-tensorflow
-
-
-Bucketed Random Projection
-Locality-Sensitive Hashing - check out blog post from Uber
-SGNS Algorithm
-T-SNE Dimensionality Reduction
-Latent Dirichlet Allocation (LDA)
-
-Word/Doc 2vec
-Distributional meaning!
-Cross-entropy loss
-Two ways to do word2vec
-Skip-grams— sliding window
-Continuous bag of words
-Two training methods
-Hierarchical Softmax
-Negative Sampling
-(also Naive Softmax)
-Two Ways to Doc2Vec
-PV-DM
-PV-DBOW
-
-
-Might be helpful: https://livebook.manning.com/book/deep-learning-for-search/chapter-6/v-6/
+## Works Cited and Further Reading
+- [Weston 2013](https://www.researchgate.net/publication/262245974_Nonlinear_latent_factorization_by_embedding_multiple_user_interests)
+- [Weston 2011](https://www.researchgate.net/publication/220815909_WSABIE_Scaling_up_to_large_vocabulary_image_annotation)
+- [Keqin 2008](https://www.researchgate.net/publication/221324580_A_New_Effective_Collaborative_Filtering_Algorithm_Based_on_User's_Interest_Partition)
+[Yasdi](https://www.patrickbaudisch.com/interactingwithrecommendersystems/WorkingNotes/RaminYasdiAcquisitionOfUsersInterests.pdf)
