@@ -9,6 +9,7 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 
 ## Some Math
 ### Variable Glossary
+| name | definition      |   | name | definition      |
 |------|-----------------|---|------|-----------------|
 | var1 | var1 definition |   | var5 | var5 definition |
 | var2 | var2 definition |   | var6 | var6 definition |
