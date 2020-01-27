@@ -77,6 +77,7 @@ User vectors are updated using the gradient above.  (Weston 2013) describes a pr
 ### Nonlinear Model (Model 2)
 #### Gradient
 !!! Fix equation !!!
+
 The gradient for the nonlinear funciton is similar to the lienar model, but uses the particular interest unit per user which is most relevant to the selected relevant item d.
 
 #### Gradient Descent - User Vector Update
