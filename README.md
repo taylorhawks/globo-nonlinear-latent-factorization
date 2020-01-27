@@ -102,7 +102,9 @@ Skipping the first step (for now), I've chosen a [dataset from kaggle](https://w
 <img src='img/clicks_per_user.png'/>
 
 The graph below shows th cumulative number of users who have read at least n articles (articles on x-axis, users on y-axis.)
+
 <img src='img/cumulative_clicks_per_user.png'/>
+
 I used this to pick n>=10 and used 8 for the training set.
 
 
