@@ -73,7 +73,7 @@ _description_
 
 
 
-## Project Outline
+# Project Outline
 
 Skipping the first step (for now), I've chosen a dataset from kaggle with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length *m* = 250.
 
