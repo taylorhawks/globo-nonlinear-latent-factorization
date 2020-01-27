@@ -10,6 +10,8 @@ From the paper:
 
 This is a bit abstract still, but makes more sense in the context of content-based recommendations.   The original paper optimizes both User and Item vectors to get the best user-item pairings, in the typical style of a fully collaborative recommendation system.  Instead, this project uses doc2vec-generated item vectors so that the original relative meaning between items-based on their actual content-is not lost.
 
+---
+
 ## Some Math
 ### Variable Glossary
 | name | definition      |   | name | definition      |
@@ -35,6 +37,8 @@ _description_
 <img src = 'img/math/modified_cost_function.png'/>
 _description_
 
+---
+
 ### Linear Model (Model 1)
 #### Gradient
 <img src = 'img/math/gradient_linear.png'/>
@@ -43,6 +47,8 @@ _description_
 #### Gradient Descent - User Vector Update
 <img src = 'img/math/user_update_linear.png'/>
 _description_
+
+---
 
 ### Nonlinear Model (Model 2)
 #### Gradient
