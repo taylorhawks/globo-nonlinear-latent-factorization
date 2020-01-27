@@ -39,7 +39,6 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 | d-bar    | Item irrelevant to a user                                                               |
 | f        | Scoring function                                                                        |
 | L        | function which weights a user's rank of an item                                         |
-| V        | Item vectors                                                                            |
 | J        | cost/objective function                                                                 |
 | alpha    | Gradient descent learning rate                                                          |
 
