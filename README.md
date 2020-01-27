@@ -20,7 +20,7 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 | var4 | var4 definition |   | var8 | var8 definition |
 
 ### Original Cost Function
-<img src = 'img/math/cost_funciton'/>
+<img src = 'img/math/cost_funciton.png'/>
 _description_
 
 ### Modified Cost Function
