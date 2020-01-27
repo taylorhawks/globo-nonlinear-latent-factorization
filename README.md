@@ -19,21 +19,49 @@ This is a bit abstract still, but makes more sense in the context of content-bas
 | var3 | var3 definition |   | var7 | var7 definition |
 | var4 | var4 definition |   | var8 | var8 definition |
 
-### Original Cost Function
-<img src = 'img/math/cost_function.png'>
+#### Linear Scoring Model
+<img src = 'img/math/linear_scoring_model.png'/>
 _description_
 
-### Modified Cost Function
+#### Nonlinear Scoring Model
+<img src = 'img/math/nonlinear_scoring_model.png'/>
+_description_
+
+#### Original Cost Function
+<img src = 'img/math/cost_function.png'/>
+_description_
+
+#### Modified Cost Function
+<img src = 'img/math/modified_cost_function.png'/>
+_description_
+
+### Linear Model
+#### Gradient
 <img></img>
 _description_
 
-### Gradient
+#### Gradient Descent - User Vector Update
 <img></img>
 _description_
 
-### Gradient Descent - User Vector Update
+### Nonlinear Model
+#### Gradient
 <img></img>
 _description_
+
+#### Gradient Descent - User Vector Update
+<img></img>
+_description_
+
+
+
+
+
+
+
+
+
+
 
 ## Project Outline
 
