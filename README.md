@@ -13,7 +13,7 @@
   - Max-nonlinearity
 
 ## Plain English
-Recommendation systems help websites serve you new content similar to what you already like.  Sometimes, this is done by describing users with a set of abstract numbers which they then compare to other sets of abstract numbers (content on the website).  Some people (Google for examle) think this is too simple a model because people can be interested in many types of content that are not necessarily related to each other.  Instead, we can use multiple sets of numbers for each user instead of just one set.  All the math and code to follow describes how to actually do this, and how I did it.
+Recommendation systems help websites serve you new content similar to what you already like.  Sometimes, this is done by describing users with a set of abstract numbers (you) which they then compare to other sets of abstract numbers (content on the website).  Some people (Google for examle) think this is too simple a model because people can be interested in many types of content that are not necessarily related to each other.  Instead, we can use multiple sets of numbers for each user instead of just one set.  All the math and code to follow describes how to actually do this, and how I did it.
 
 ## Introduction
 This project was inspired by research done at [Condé Nast](https://www.condenast.com/) presented at an event by [Dataiku](https://www.dataiku.com/) on October 23, 2019.
