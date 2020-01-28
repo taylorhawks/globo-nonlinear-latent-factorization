@@ -1,14 +1,13 @@
 # Nonlinear Latent Factorization (Work In Progress)
 
 ### To-Do:
-- Whiteboarding Finished!!
-- Code Linear Model
+- Linear Model
   - Optional but should do: Optimize only against relevant corpus (in some D_u)
   - Optional but should do: Variable sizes per user (maybe do this at the end)
   - Optional: Use TQDM for GD function
   - Optional: Adaptive learning rate
   - Train/test validation
-- Code Nonlinear Model
+- Nonlinear Model
   - Inherit as much as possible from LinearModel parent class
   - Cluster initialization
   - Max-nonlinearity
