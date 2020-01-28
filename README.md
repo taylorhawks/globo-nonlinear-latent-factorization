@@ -113,8 +113,15 @@ I used this to pick n>=10 and used 8 for the training set.
 
 ## Model 1 - Linear Latent Factorization
 ### Pipeline Notes
+
+- Mini-batch SGD
+
+
 ### Evaluation
+- Objective Funciton Minimization
 <img src='img/gradient_descent.png'/>
+
+- Article Recommendation & Validation
 
 ## Model 2 - Nonlinear Latent Factorization
 ### Pipeline Notes
@@ -122,7 +129,10 @@ I used this to pick n>=10 and used 8 for the training set.
 1. User-by-user clustering
 2. Interest unit optimiztion through SGD
 
-#### Evaluation
+### Evaluation
+- Objective Funciton Minimization
+- Article Recommendation & Validation
+
 ---
 
 ## Works Cited and Further Reading
