@@ -3,6 +3,7 @@
 ### To-Do:
 - Whiteboarding Finished!!
 - Code Linear Model
+  - Optional but should do: Optimize only against relevant corpus (in some D_u)
   - Optional but should do: Variable sizes per user (maybe do this at the end)
   - Optional: Use TQDM for GD function
   - Optional: Adaptive learning rate
@@ -114,8 +115,7 @@ I used this to pick n>=10 and used 8 for the training set.
 ## Model 1 - Linear Latent Factorization
 ### Pipeline Notes
 
-- Mini-batch SGD
-
+As stated before, I prefer vectorized tensor operations to any kind of iterative processes and my code reflects this.  The `LinearModel` class uses a pipeline to instantiate user vectors based on the mean of relevant item vectors, and then mini-batch gradient descent optimizes the user vectors against the larger corpus of articles using the equation "Gradient Descent" under "Linear Model" in the Equations section.
 
 ### Evaluation
 - Objective Funciton Minimization
@@ -125,9 +125,16 @@ I used this to pick n>=10 and used 8 for the training set.
 
 ## Model 2 - Nonlinear Latent Factorization
 ### Pipeline Notes
+The pipeline is modified from the code in the `LinearModel` class.
+
 #### User interest partitioning
-1. User-by-user clustering
-2. Interest unit optimiztion through SGD
+The key first step of the nonlinear model is "user interest partitioning" in which user interests _i_ are initialized.  Collaborative algorithms tend to initialize _i_ randomly but for the purposes of this project, in which item vectors _V_ are predefined, it makes more sense to initialize U based on V before optimization with gradient descent.
+
+- User-by-user clustering
+
+##### Optimization
+
+- Gradient Descent description
 
 ### Evaluation
 - Objective Funciton Minimization
