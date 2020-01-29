@@ -58,7 +58,7 @@ class NonlinearModel(LinearModel):
         def k_means(starting_vectors,k):
             def iterative_kmeans(starting_vectors,old_centroids, new_centroids,k):
                 while True:
-                    if new_centroids.all() == old_centroids.all():
+                    if np.all(new_centroids == old_centroids):
                         return new_centroids
                     else:
                         old_centroids = new_centroids
