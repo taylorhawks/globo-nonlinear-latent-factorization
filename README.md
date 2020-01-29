@@ -3,13 +3,12 @@
 ### To-Do:
 - Linear Model
   - Optional but should do: Optimize only against relevant corpus (in some D_u)
-  - Optional but should do: Variable sizes per user (maybe do this at the end)
+  - Optional but should do: Variable sizes per user (maybe do this at the end. requires forward-filling with NANs)
   - Optional: Use TQDM for GD function
   - Optional: Adaptive learning rate
   - Train/test validation
 - Nonlinear Model
-  - Inherit as much as possible from LinearModel parent class
-  - Cluster initialization
+  - Kmeans clustering (look to parent class d.get_embedding_vectors)
   - Max-nonlinearity
 
 ## Plain English
