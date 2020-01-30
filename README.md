@@ -9,9 +9,8 @@
   - Max-nonlinearity - double-check math and then implement
   
 #### Mid Priority:
-- Linear Model
-  - Variable sizes per user (maybe do this at the end. requires forward-filling with NANs)
-  - Optimize only against relevant corpus (in some D_u)
+- Variable sizes per user (maybe do this at the end. requires forward-filling with NANs)
+- Optimize only against relevant corpus (in some D_u)
   
 #### Low Priority
  - Adaptive learning rate for gradient descent
