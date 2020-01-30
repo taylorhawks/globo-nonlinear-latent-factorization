@@ -1,15 +1,20 @@
 # Nonlinear Latent Factorization (Work In Progress)
 
 ### To-Do:
+
+High priority:
 - Linear Model
-  - Optional but should do: Optimize only against relevant corpus (in some D_u)
-  - Optional but should do: Variable sizes per user (maybe do this at the end. requires forward-filling with NANs)
-  - Optional: Use TQDM for GD function
-  - Optional: Adaptive learning rate
   - Train/test validation
 - Nonlinear Model
-  - Kmeans clustering (look to parent class d.get_embedding_vectors)
-  - Max-nonlinearity
+  - Max-nonlinearity - double-check math and then implement
+  
+  Mid Priority:
+- Linear Model
+  - Variable sizes per user (maybe do this at the end. requires forward-filling with NANs)
+  - Optimize only against relevant corpus (in some D_u)
+  
+  Low Priority
+ - Adaptive learning rate for gradient descent
 
 ## Plain English
 Recommendation systems help websites serve you new content similar to what you already like.  Sometimes, this is done by describing users with a set of abstract numbers (you) which they then compare to other sets of abstract numbers (content on the website).  Some people (Google for examle) think this is too simple a model because people can be interested in many types of content that are not necessarily related to each other.  Instead, we can use multiple sets of numbers for each user rather than just one set.  The following math and code describes how to actually do this, and how I did it.
