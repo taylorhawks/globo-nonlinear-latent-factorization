@@ -6,10 +6,7 @@
 - Linear Model
   - Train/test validation
 - Nonlinear Model
-  - Fix gradient descent bug...
-
-Explanation: The gradient is not the appropriate shape for U in the non-linear model.  It's fit to the original shape for the nonlinear model.  Zeros need to be filled in for the unaffected interest units.  Fortunately, this only affects dJ and not J.
-
+  - Fix gradient descent bug...  Explanation: The gradient is not the appropriate shape for U in the non-linear model.  It's fit to the original shape for the nonlinear model.  Zeros need to be filled in for the unaffected interest units.  Fortunately, this only affects dJ and not J.
   - Train/test validation
 - Compare the two models
   
