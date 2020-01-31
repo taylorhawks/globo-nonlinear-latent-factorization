@@ -16,7 +16,7 @@ class NonlinearModel(LinearModel):
         @staticmethod
         def starting_centroids(points,T):
             #initialize centroids by randomly picking an item for each user
-            starter_idx = np.random.rand(points.shape[0],T).argsort(axis=-1)[:,0:3,np.newaxis]
+            starter_idx = np.random.rand(points.shape[0],T).argsort(axis=-1)[:,0:T,np.newaxis]
             return np.take_along_axis(
                 points,
                 starter_idx,
