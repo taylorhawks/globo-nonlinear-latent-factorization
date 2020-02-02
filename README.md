@@ -9,10 +9,12 @@
   - Gradient fixed - just implement
   - Train/test validation
 - Compare the two models
+- Update readme
+- Clean up code
   
 #### Mid Priority:
 - Use dot product instead of euclidean distance for clustering
-- Variable sizes per user (maybe do this at the end. requires forward-filling with NANs)
+- Variable sizes per user (maybe do this at the end. requires forward-filling (or back-filling) with NANs)
 - Optimize only against relevant corpus (in some D_u)
   
 #### Low Priority
