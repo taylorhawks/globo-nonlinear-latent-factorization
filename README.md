@@ -6,7 +6,7 @@
 - Train/test validation for both models
 - Compare the two models
 - Update readme
-- Clean up code
+- Clean up code (fix pipelines)
   
 #### Mid Priority:
 - Use dot product instead of euclidean distance for clustering
@@ -139,6 +139,10 @@ The key first step of the nonlinear model is "user interest partitioning" in whi
 ##### Optimization
 
 - Gradient Descent description
+
+<img src='img/nonlinear_gradient_descent.png'/>
+
+<img src='img/nonlinear_gradient_descent_bad.png'/>
 
 ### Evaluation
 - Objective Funciton Minimization
