@@ -3,11 +3,7 @@
 ### To-Do:
 
 #### High priority:
-- Linear Model
-  - Train/test validation
-- Nonlinear Model
-  - Gradient fixed - just implement
-  - Train/test validation
+- Train/test validation for both models
 - Compare the two models
 - Update readme
 - Clean up code
