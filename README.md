@@ -3,10 +3,10 @@
 ### To-Do:
 
 #### High priority:
+- Get it on sagemaker
 - Train/test validation for both models
 - Compare the two models
 - Update readme
-- Clean up code (fix pipelines)
   
 #### Mid Priority:
 - Variable sizes per user (maybe do this at the end. requires forward-filling (or back-filling) with NANs)
