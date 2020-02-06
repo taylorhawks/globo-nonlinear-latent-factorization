@@ -3,9 +3,9 @@
 ### To-Do:
 
 #### High priority:
+- Clean up & comment
 - Get it on sagemaker
 - Train/test validation for both models
-- Compare the two models
 - Update readme
   
 #### Mid Priority:
