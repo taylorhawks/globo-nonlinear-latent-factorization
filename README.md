@@ -121,7 +121,7 @@ I used this to pick n>=10 and used 8 for the training set.
 As stated before, I prefer vectorized tensor operations to any kind of iterative processes and my code reflects this.  The `LinearModel` class uses a pipeline to instantiate user vectors based on the mean of relevant item vectors, and then mini-batch gradient descent optimizes the user vectors against the larger corpus of articles using the equation "Gradient Descent" under "Linear Model" in the Equations section.
 
 #### Optimization
-Using a learning rate of 0.0001, the objective function minimizes at roughly 750 iterations.
+Using a learning rate of 0.0001, the objective function minimizes at roughly 800 iterations.
 <img src='img/gradient_descent.png'/>
 
 ### Evaluation
