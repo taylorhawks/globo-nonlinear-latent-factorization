@@ -135,17 +135,26 @@ Using a learning rate of 0.001, the objective function minimizes at roughly 80 i
 The key first step of the nonlinear model is "user interest partitioning" in which user interests _i_ are initialized.  Collaborative algorithms tend to initialize _i_ randomly but for the purposes of this project, in which item vectors _V_ are predefined, it makes more sense to initialize U based on V before optimization with gradient descent.
 #### Initialization
 First user interest vectors are initialized on a per-user basis using a modified k-means clustering algorithm, _k_ being equal to the number of latent vectors per user, or equivalent to _T_.  The function is broadcastable and runs simultaneously for all users.
-##### Optimization
-Once vectors are initialized, vectors are updated at each step of gradient descent using the equations in the math section above.
+#### Optimization
+Once vectors are initialized, vectors are updated at each step of gradient descent using the equations in the math section above.  Gradient calculation is not quite as straightforward as for the linear model, since only one interest unit should be updated per user-item interaction.
 
-Better results were typically achieved when tweaking the hinge loss regularization parameter, which is typically just set to 1.  Optimization of the nonlinear model tends to be noisier than the linear model, and this regularization parameter helps focus on particular User-Item interactions that are the most impactful.  When the total cost is calculated at the end for validation, such as in the graph below, the default value of 1 is used.
+A |U| x T x `size` x m tensor is used to start, where are repeated across the user interest axis _T_ times, then multiplied by a boolean matrix along the third axis and summed to produce a |U| x T x m gradient tensor.  The boolean matrix is determined per user, per item, by the maximum dot product between user vectors and the relevant item.  This can be modified by `use_vdbar_for_interest_unit`, which considers the overall cost per item pair.  Additionally, the hyperparameter `readj_interval` determines how often the best interest unit is calculated.
+
+The biggest challenge in optimizing the nonlinear model is the low signal-to-noise ratio.  Randomness of item pairings, while essential for generalized optimization, makes taking effective steps in gradient descent extremely difficult.  Some effective was around this problem are as follows:
+
+- Interest Unit Readjustment - Using higher values for `readj_interval` allows interest units to adjust effectively before being thrown off by more noisiness in the data.  However, convergence with this strategy is very slow.
+- Learning Rate - Much higher learning rates than for the linear model help to escape local minima.
+- Batch Size - Larger batch sizes help to control noisiness.
+- Regularization - Adjusting regularization ended up being the most effective way to ensure fast, consistent convergence.  The regularization parameter in the hinge loss adjustment can be tweaked to change the gradient, although the default parameter value of 1 is still used in the end calculation.  Too high a value leads to divergence.  Too low a value prevents optimization.
+
+Optimization with h = 5 and alpha = 0.1 is shown below.
 
 <img src='img/nonlinear_gradient_descent.png'/>
 
 
-### Evaluation
-- Objective Funciton Minimization
-- Article Recommendation & Validation
+## CROSS VALIDATION
+
+... not done yet.
 
 ---
 
