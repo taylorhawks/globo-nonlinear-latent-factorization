@@ -121,32 +121,24 @@ I used this to pick n>=10 and used 8 for the training set.
 
 ## Model 1 - Linear Latent Factorization
 ### Pipeline Notes
-
+#### Initialization
 The `NonlinearModel` class can produce linear and nonlinear models depending on the value of `T`.  Much of the boolean broadcasting and indexing used in the nonlinear model becomes irrelevant when T is set to 1.  First, user vectors are initialized by taking the simple mean of document vectors for the documents relevant to each user.
-
+#### Optimization
 Then, the user vectors are further optimized in gradient descent.  A set number of items per user is used in each iteration of gradient descent.  This is given by `size` where all items are unique per user.  Increasing `batch_size` repeats those unique relevant items (∈ D<sub>u</sub>) but with new items _not_ relevant to the user (∉ D<sub>u</sub>).  The learning rate is also scaled by batch size for consistency, since gradients from each pair of items are summed at each iteration.  Otherwise, larger batches would produce larger gradients.  `test_size` is used for validation at each step to compute the objective function J for the updated user vectors, the relevant document vectors which remain constant, and a new randomly chosen set of document vectors not relevant to users.  `gd_algorithm` tells whether or not to use RPROP.
 
-#### Optimization
 Using a learning rate of 0.001, the objective function minimizes at roughly 80 iterations.
 <img src='img/gradient_descent.png'/>
 
-### Evaluation
-- Article Recommendation & Validation
-
 ## Model 2 - Nonlinear Latent Factorization
 ### Pipeline Notes
-
-
-
-
 #### User interest partitioning
 The key first step of the nonlinear model is "user interest partitioning" in which user interests _i_ are initialized.  Collaborative algorithms tend to initialize _i_ randomly but for the purposes of this project, in which item vectors _V_ are predefined, it makes more sense to initialize U based on V before optimization with gradient descent.
-
-First user interest vectors are initialized on a per-user basis using a modified k-means clustering algorithm, k being equal to the number of latent vectors per user.
-
+#### Initialization
+First user interest vectors are initialized on a per-user basis using a modified k-means clustering algorithm, _k_ being equal to the number of latent vectors per user, or equivalent to _T_.  The function is broadcastable and runs simultaneously for all users.
 ##### Optimization
+Once vectors are initialized, vectors are updated at each step of gradient descent using the equations in the math section above.
 
-Once vectors are initialized, vectors are updated at each step of gradient descent using the equations in the math section above.  Better results were typically achieved when tweaking the hinge loss regularization parameter, which is typically just set to 1.  Optimization of the nonlinear model tends to be noisier than the linear model, and this regularization parameter helps focus on particular User-Item interactions that are the most impactful.  When the total cost is calculated at the end for validation, such as in the graph below, the default value of 1 is used.
+Better results were typically achieved when tweaking the hinge loss regularization parameter, which is typically just set to 1.  Optimization of the nonlinear model tends to be noisier than the linear model, and this regularization parameter helps focus on particular User-Item interactions that are the most impactful.  When the total cost is calculated at the end for validation, such as in the graph below, the default value of 1 is used.
 
 <img src='img/nonlinear_gradient_descent.png'/>
 
