@@ -38,7 +38,6 @@ Once vectors are optimized for each user, recommendations can be made based on v
 | variable | definition                                                                              |
 |----------|-----------------------------------------------------------------------------------------|
 | U        | All users                                                                               |
-| |U|      | Number of users                                                                         |
 | u        | Single user                                                                             |
 | i        | Interest unit                                                                           |
 | T        | Number of discrete user interests (don't confuse this with the vector transpose symbol) |
