@@ -1,16 +1,4 @@
-# Nonlinear Latent Factorization (Work In Progress)
-
-### To-Do:
-
-#### High priority:
-- Comment. clean, and consolidate code
-- Train/test validation for both models
-- Update readme
-
-#### Low Priority
- - Variable sizes per user (requires forward-filling (or back-filling) with NANs)
- - Investigate why clustering doesn't work for k > n/2
-
+# Nonlinear Latent Factorization (WIP)
 ## Abstract
 Recommendation systems help websites serve you new content similar to what you already like.  Sometimes, this is done by describing users with a set of abstract numbers (you) which they then compare to other sets of abstract numbers (content on the website).  Some people (Google for examle) think this is too simple a model because people can be interested in many types of content that are not necessarily related to each other.  Instead, we can use multiple sets of numbers for each user rather than just one set.
 
@@ -157,6 +145,16 @@ Optimization with h = 5 and alpha = 0.1 is shown below.
 ... not done yet.
 
 ---
+
+### To-Do:
+#### High priority:
+- Train/test validation for both models
+- Update readme
+
+#### Low Priority
+ - Variable sizes per user (requires forward-filling (or back-filling) with NANs)
+ - Investigate why clustering doesn't work for k > n/2
+
 
 ## Works Cited and Further Reading
 - [Weston 2013](https://www.researchgate.net/publication/262245974_Nonlinear_latent_factorization_by_embedding_multiple_user_interests)
