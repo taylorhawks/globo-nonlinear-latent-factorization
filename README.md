@@ -114,7 +114,7 @@ The `NonlinearModel` class can produce linear and nonlinear models depending on 
 #### Optimization
 Then, the user vectors are further optimized in gradient descent.  A set number of items per user is used in each iteration of gradient descent.  This is given by `size` where all items are unique per user.  Increasing `batch_size` repeats those unique relevant items (∈ D<sub>u</sub>) but with new items _not_ relevant to the user (∉ D<sub>u</sub>).  The learning rate is also scaled by batch size for consistency, since gradients from each pair of items are summed at each iteration.  Otherwise, larger batches would produce larger gradients.  `test_size` is used for validation at each step to compute the objective function J for the updated user vectors, the relevant document vectors which remain constant, and a new randomly chosen set of document vectors not relevant to users.  `gd_algorithm` tells whether or not to use RPROP.
 
-Using a learning rate of 0.001, the objective function minimizes at roughly 80 iterations.
+Using a learning rate of 0.01, the objective function minimizes at roughly 300 iterations.
 <img src='img/gradient_descent.png'/>
 
 ## Model 2 - Nonlinear Latent Factorization
