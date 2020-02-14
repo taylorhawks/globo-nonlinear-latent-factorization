@@ -3,17 +3,15 @@
 ### To-Do:
 
 #### High priority:
-- Clean up & comment
-- Get it on sagemaker
+- Comment code
+- Fix nonlinear GD bug
 - Train/test validation for both models
 - Update readme
-  
-#### Mid Priority:
-- Variable sizes per user (maybe do this at the end. requires forward-filling (or back-filling) with NANs)
-- Optimize only against relevant corpus (in some D_u)
-  
+
 #### Low Priority
- - Adaptive learning rate for gradient descent
+ - Variable sizes per user (requires forward-filling (or back-filling) with NANs)
+ - Optimize only against relevant corpus (in some D_u)
+ - Try RPROP for gradient descent
  - Investigate why clustering doesn't work for k > n/2
 
 ## Plain English
@@ -28,6 +26,8 @@ From the paper:
 > The key idea of the proposed model is to define T interest vectors per user, where the user part of the model is written as Uˆ which is an m × |U| × T tensor. Hence, we also write Uˆiu ∈ R m as the m-dimensional vector that represents the ith of T possible interests for user u. The item part of the model is the same as in the classical user-item factorization models, and is still denoted as a m×|D| matrix V.
 
 This is a bit abstract still, but makes more sense in the context of content-based recommendations.   The original paper optimizes both User and Item vectors to get the best user-item pairings, in the typical style of a fully collaborative recommendation system enabled by matrix decomposition.  Instead, my project uses doc2vec-generated item vectors so that the original relative meaning between items, based on their actual content, is not lost.
+
+Once vectors are optimized for each user, recommendations can be made based on vector similarity.
 
 ---
 
@@ -120,10 +120,11 @@ I used this to pick n>=10 and used 8 for the training set.
 
 As stated before, I prefer vectorized tensor operations to any kind of iterative processes and my code reflects this.  The `LinearModel` class uses a pipeline to instantiate user vectors based on the mean of relevant item vectors, and then mini-batch gradient descent optimizes the user vectors against the larger corpus of articles using the equation "Gradient Descent" under "Linear Model" in the Equations section.
 
-### Evaluation
-- Objective Funciton Minimization
+#### Optimization
+Using a learning rate of 0.0001, the objective function minimizes at roughly 800 iterations.
 <img src='img/gradient_descent.png'/>
 
+### Evaluation
 - Article Recommendation & Validation
 
 ## Model 2 - Nonlinear Latent Factorization
@@ -133,15 +134,14 @@ The pipeline is modified from the code in the `LinearModel` class.
 #### User interest partitioning
 The key first step of the nonlinear model is "user interest partitioning" in which user interests _i_ are initialized.  Collaborative algorithms tend to initialize _i_ randomly but for the purposes of this project, in which item vectors _V_ are predefined, it makes more sense to initialize U based on V before optimization with gradient descent.
 
-- User-by-user clustering
+First user interest vectors are initialized on a per-user basis using a modified k-means clustering algorithm, k being equal to the number of latent vectors per user.
 
 ##### Optimization
 
-- Gradient Descent description
+Once vectors are initialized, vectors are updated at each step of gradient descent using the equations in the math section above.  Better results were typically achieved when tweaking the hinge loss regularization parameter, which is typically just set to 1.  Optimization of the nonlinear model tends to be noisier than the linear model, and this regularization parameter helps focus on particular User-Item interactions that are the most impactful.  When the total cost is calculated at the end for validation, such as in the graph below, the default value of 1 is used.
 
 <img src='img/nonlinear_gradient_descent.png'/>
 
-<img src='img/nonlinear_gradient_descent_bad.png'/>
 
 ### Evaluation
 - Objective Funciton Minimization
