@@ -93,12 +93,12 @@ The gradient for the nonlinear funciton is similar to the lienar model, but uses
 
 #### Gradient Descent - User Vector Update
 <img src = 'img/math/user_update_nonlinear.png'/>
-The equation above describes the update process for the particular interest unit i for a given user U_u.  Note that only one interest unit is updated per instance of this equation while the others are ignored.
+The equation above describes the update process for the particular interest unit i for a given user U<sub>u</sub>.  Note that only one interest unit is updated per instance of this equation while the others are ignored.  Tweaking the hinge regularization parameter, represented here with just "1", is key here for optimization.
 
 
 # Project Outline
 
-Skipping the first step (for now), I've chosen a [dataset from kaggle](https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom) with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length _m_ = 250.
+Skipping the document vectorization step, I've chosen a [dataset from kaggle](https://www.kaggle.com/gspmoreira/news-portal-user-interactions-by-globocom) with user interactions on the Brazilian news site [Globo](https://www.globo.com/).  They've already vectorized each document with vector length _m_ = 250.
 
 #### Data Summary
 - Vector size (m): 250
@@ -111,7 +111,7 @@ Skipping the first step (for now), I've chosen a [dataset from kaggle](https://w
 
 <img src='img/clicks_per_user.png'/>
 
-The graph below shows th cumulative number of users who have read at least n articles (articles on x-axis, users on y-axis.)
+The graph below shows the cumulative number of users who have read at least n articles (articles on x-axis, users on y-axis.)
 
 <img src='img/cumulative_clicks_per_user.png'/>
 
@@ -122,7 +122,9 @@ I used this to pick n>=10 and used 8 for the training set.
 ## Model 1 - Linear Latent Factorization
 ### Pipeline Notes
 
-As stated before, I prefer vectorized tensor operations to any kind of iterative processes and my code reflects this.  The `LinearModel` class uses a pipeline to instantiate user vectors based on the mean of relevant item vectors, and then mini-batch gradient descent optimizes the user vectors against the larger corpus of articles using the equation "Gradient Descent" under "Linear Model" in the Equations section.
+The `NonlinearModel` class can produce linear and nonlinear models depending on the value of `T`.  Much of the boolean broadcasting and indexing used in the nonlinear model becomes irrelevant when T is set to 1.  First, user vectors are initialized by taking the simple mean of document vectors for the documents relevant to each user.
+
+Then, the user vectors are further optimized in gradient descent.  A set number of items per user is used in each iteration of gradient descent.  This is given by `size` where all items are unique per user.  Increasing `batch_size` repeats those unique relevant items (∈ D<sub>u</sub>) but with new items _not_ relevant to the user (∉ D<sub>u</sub>).  The learning rate is also scaled by batch size for consistency, since gradients from each pair of items are summed at each iteration.  Otherwise, larger batches would produce larger gradients.  `test_size` is used for validation at each step to compute the objective function J for the updated user vectors, the relevant document vectors which remain constant, and a new randomly chosen set of document vectors not relevant to users.  `gd_algorithm` tells whether or not to use RPROP.
 
 #### Optimization
 Using a learning rate of 0.001, the objective function minimizes at roughly 80 iterations.
@@ -133,7 +135,9 @@ Using a learning rate of 0.001, the objective function minimizes at roughly 80 i
 
 ## Model 2 - Nonlinear Latent Factorization
 ### Pipeline Notes
-The pipeline is modified from the code in the `LinearModel` class.
+
+
+
 
 #### User interest partitioning
 The key first step of the nonlinear model is "user interest partitioning" in which user interests _i_ are initialized.  Collaborative algorithms tend to initialize _i_ randomly but for the purposes of this project, in which item vectors _V_ are predefined, it makes more sense to initialize U based on V before optimization with gradient descent.
