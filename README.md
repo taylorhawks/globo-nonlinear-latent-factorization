@@ -11,8 +11,13 @@
  - Variable sizes per user (requires forward-filling (or back-filling) with NANs)
  - Investigate why clustering doesn't work for k > n/2
 
-## Plain English
-Recommendation systems help websites serve you new content similar to what you already like.  Sometimes, this is done by describing users with a set of abstract numbers (you) which they then compare to other sets of abstract numbers (content on the website).  Some people (Google for examle) think this is too simple a model because people can be interested in many types of content that are not necessarily related to each other.  Instead, we can use multiple sets of numbers for each user rather than just one set.  The following math and code describes how to actually do this, and how I did it.
+## Abstract
+Recommendation systems help websites serve you new content similar to what you already like.  Sometimes, this is done by describing users with a set of abstract numbers (you) which they then compare to other sets of abstract numbers (content on the website).  Some people (Google for examle) think this is too simple a model because people can be interested in many types of content that are not necessarily related to each other.  Instead, we can use multiple sets of numbers for each user rather than just one set.
+
+How is this different from using just _more numbers_?  Let's look at what the numbers in question actually represent.  To determine how relevant an item might be for a particular user, a similarity score is calculated between the numbers representing that item and the numbers representing that user.  However, users can be interested in many things that are not necessarily related, and therefore there interests cannot be described in one dimension.
+
+This project builds a model using vector representations of documents read by different users on a website to try to give the best possible recommendations for users based on their individual interests.  This is a content-based recommendation system, meaning that recommendations are based on the content of the documents themselves, rather than mutual interactions with the documents between users.  All of the research used for this project is oriented around collaborative recommendation, so document vectors are used in place of optimized item embeddings, but most of the math is otherwise the same.
+
 
 ## Introduction
 This project was inspired by research done at [Condé Nast](https://www.condenast.com/) presented at an event by [Dataiku](https://www.dataiku.com/) on October 23, 2019.
@@ -33,6 +38,7 @@ Once vectors are optimized for each user, recommendations can be made based on v
 | variable | definition                                                                              |
 |----------|-----------------------------------------------------------------------------------------|
 | U        | All users                                                                               |
+| |U|      | Number of users                                                                         |
 | u        | Single user                                                                             |
 | i        | Interest unit                                                                           |
 | T        | Number of discrete user interests (don't confuse this with the vector transpose symbol) |
@@ -45,6 +51,8 @@ Once vectors are optimized for each user, recommendations can be made based on v
 | L        | function which weights a user's rank of an item                                         |
 | J        | cost/objective function                                                                 |
 | alpha    | Gradient descent learning rate                                                          |
+| h        | Hinge regularization parameter (typically 1)                                            |
+
 
 #### Linear Scoring Model
 <img src = 'img/math/linear_scoring_model.png'/>
