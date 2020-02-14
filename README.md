@@ -3,15 +3,12 @@
 ### To-Do:
 
 #### High priority:
-- Comment code
-- Fix nonlinear GD bug
+- Comment. clean, and consolidate code
 - Train/test validation for both models
 - Update readme
 
 #### Low Priority
  - Variable sizes per user (requires forward-filling (or back-filling) with NANs)
- - Optimize only against relevant corpus (in some D_u)
- - Try RPROP for gradient descent
  - Investigate why clustering doesn't work for k > n/2
 
 ## Plain English
