@@ -43,7 +43,7 @@ Once vectors are optimized for each user, recommendations can be made based on v
 | T        | Number of discrete user interests (don't confuse this with the vector transpose symbol) |
 | V        | Item vectors                                                                            |
 | D        | Corpus (all items)                                                                      |
-| D_u      | Items relevant to a user                                                                |
+| D<sub>u</sub>      | Items relevant to a user                                                                |
 | d        | Item relevant to a user                                                                 |
 | d-bar    | Item irrelevant to a user                                                               |
 | f        | Scoring function                                                                        |
