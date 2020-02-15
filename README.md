@@ -141,8 +141,16 @@ Optimization with h = 5 and alpha = 0.1 is shown below.
 
 
 ## CROSS VALIDATION
-
-... not done yet.
+### Model 1 - Linear Latent Factorization
+#### Model 1 - Unoptimized
+(graphics and text)
+#### Model 1 - Optimized
+(graphics and text)
+### Model 2 - Nonlinear Latent Factorization
+#### Model 2 - Unoptimized
+(graphics and text)
+#### Model 2 - Optimized
+(graphics and text)
 
 ---
 
