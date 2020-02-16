@@ -156,11 +156,14 @@ Optimization with h = 5 and alpha = 0.1 is shown below.
 
 ### To-Do:
 #### High priority:
-- Train/test validation for both models
+- Don't recommend articles that have already been seen
+- More GD (more iterations) - use sagemaker?
+- Full train/test validation for both models
+- ROC curvez
 - Update readme
 
 #### Low Priority
- - Variable sizes per user (requires forward-filling (or back-filling) with NANs)
+ - Variable sizes per user in training set (requires forward-filling (or back-filling) with NANs)
  - Investigate why clustering doesn't work for k > n/2
 
 
