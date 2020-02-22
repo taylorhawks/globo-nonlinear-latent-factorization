@@ -141,6 +141,8 @@ Optimization with h = 5 and alpha = 0.1 is shown below.
 
 
 ## CROSS VALIDATION
+- Mean Average Precision http://fastml.com/what-you-wanted-to-know-about-mean-average-precision/
+
 ### Model 1 - Linear Latent Factorization
 #### Model 1 - Unoptimized
 (graphics and text)
