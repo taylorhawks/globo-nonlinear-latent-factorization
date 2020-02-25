@@ -140,8 +140,10 @@ Optimization with h = 5 and alpha = 0.1 is shown below.
 <img src='img/nonlinear_gradient_descent.png'/>
 
 
-## CROSS VALIDATION
+## Evaluation
 - Mean Average Precision http://fastml.com/what-you-wanted-to-know-about-mean-average-precision/
+
+- write up
 
 ### Model 1 - Linear Latent Factorization
 #### Model 1 - Unoptimized
