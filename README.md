@@ -156,15 +156,19 @@ Optimization with h = 5 and alpha = 0.1 is shown below.
 
 ---
 
-### To-Do:
-#### High priority:
-- Don't recommend articles that have already been seen
-- More GD (more iterations) - use sagemaker?
-- Full train/test validation for both models
-- ROC curvez
-- Update readme
+## How to Implement (Next Steps)
+- Doc2Vec training/re-training
+- dimensionality reduction
+- data preparation
+- user optimization
+- sorting algorithms
 
-#### Low Priority
+### To-Do:
+- `__add__` method for pipeline
+- Update optimization/gradient descent portion
+- Write up "implementation"
+
+#### Further Improvements
  - Variable sizes per user in training set (requires forward-filling (or back-filling) with NANs)
  - Investigate why clustering doesn't work for k > n/2
 
