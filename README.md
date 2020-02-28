@@ -137,8 +137,7 @@ The biggest challenge in optimizing the nonlinear model is the low signal-to-noi
 
 Optimization with h = 5 and alpha = 0.1 is shown below.
 
-<img src='img/nonlinear_gradient_descent.png'/>
-
+img
 
 ## Evaluation
 - Mean Average Precision http://fastml.com/what-you-wanted-to-know-about-mean-average-precision/
