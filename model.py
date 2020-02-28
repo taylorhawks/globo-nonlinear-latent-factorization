@@ -13,6 +13,7 @@ class NonlinearModel():
         self.Vd = NonlinearModel.d.get_embedding_vectors(
             item_embeddings, user_data, size, embeddings_size=embeddings_size
         )
+        self.embeddings_size = embeddings_size
         self.U = self.initialize_user_vectors(
             size=size,embeddings_size=embeddings_size
         )
@@ -232,7 +233,7 @@ class NonlinearModel():
                 self.item_embeddings,
                 self.user_data,
                 test_size,
-                embeddings_size=embeddings_size,
+                embeddings_size=self.embeddings_size,
             )
 
 
@@ -252,7 +253,7 @@ class NonlinearModel():
         gd_algorithm = None
     ):
 
-        self.reset_errors()
+        # self.reset_errors()
 
         batch_mult = int(batch_size/size)
 
@@ -270,7 +271,7 @@ class NonlinearModel():
                 self.n_users,
                 size,
                 size*batch_mult,
-                embeddings_size=embeddings_size,
+                embeddings_size=self.embeddings_size,
             )
 
             ##readjustment interval
@@ -307,7 +308,7 @@ class NonlinearModel():
                     self.n_users,
                     size,
                     test_size,
-                    embeddings_size=embeddings_size,
+                    embeddings_size=self.embeddings_size,
                     len_=self.len_
                 )
 
