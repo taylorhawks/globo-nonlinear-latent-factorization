@@ -2,6 +2,7 @@ import numpy as np
 import seaborn as sns
 from tqdm.notebook import tqdm
 from time import time
+import matplotlib.pyplot as plt
 
 class NonlinearModel():
     def __init__(self, user_data, item_embeddings, size=8, embeddings_size=250, T=1):
@@ -17,10 +18,10 @@ class NonlinearModel():
         )
         self.n_users = int(self.user_data.shape[0]/size)
         self.reset_errors()
-    
+
     def reset_errors(self):
         self.errors = []
-    
+
     def initialize_user_vectors(self,size,embeddings_size):
         '''
         sets self.U in parent class __init__
@@ -32,11 +33,11 @@ class NonlinearModel():
             size,
             embeddings_size=embeddings_size
         )
-        
+
         return NonlinearModel.Cluster.k_means(starting_vectors,self.T)
         #return NonlinearModel.Cluster.starting_centroids(starting_vectors,self.T)
-    
-    
+
+
     class Cluster():
         @staticmethod
         def starting_centroids(points,T):
@@ -72,16 +73,16 @@ class NonlinearModel():
             '''
             find new centroid based on cluster center from closest_centroid
             '''
-            
-            
+
+
             weights = np.equal(
                 np.arange(k)[np.newaxis,:,np.newaxis],
                 closest[:,np.newaxis,:]
             )
 
             weights = np.repeat(weights[:,:,:,np.newaxis],points.shape[2],axis=3)
-            
-            
+
+
             points = np.repeat(points[:,np.newaxis],k,axis=1)
 
             return np.average(
@@ -107,7 +108,7 @@ class NonlinearModel():
                             NonlinearModel.Cluster.closest_centroid(
                                 starting_vectors,
                                 old_centroids
-                                ),                                           
+                                ),
                             k,
                         )
                         iterative_kmeans(starting_vectors,old_centroids,new_centroids,k)
@@ -118,17 +119,17 @@ class NonlinearModel():
                 starting_centroids,
                 k
             )
-    
+
 
     #############################
     ###### SEEN AND UNSEEN ######
     #############################
-    
+
     class d:
         @staticmethod
         def get_embedding_vectors(V_embeddings, df, size, embeddings_size=250):
             return np.hstack(V_embeddings[df.click_article_id.to_list()]).reshape(-1,size,embeddings_size)
-    
+
     class dbar:
         @staticmethod
         def get_unseen(df, u, size, len_):
@@ -139,17 +140,17 @@ class NonlinearModel():
                 ),
                 size=size,
             )
-        
+
         @staticmethod
-        def get_all_unseen(df, size, test_size, len_):            
+        def get_all_unseen(df, size, test_size, len_):
             #semi-vectorized version
             return df.user_id[0::size].map(
                 lambda u: NonlinearModel.dbar.get_unseen(df, u, test_size, len_)
             )
-        
+
         @staticmethod
         def get_embedding_vectors(V_embeddings, df, n_users, size, test_size, embeddings_size=250, len_=36047):
-            
+
             return np.hstack(
                 V_embeddings[NonlinearModel.dbar.get_all_unseen(df,size,test_size,len_).tolist()]
             ).reshape(
@@ -157,11 +158,11 @@ class NonlinearModel():
                 -1,
                 embeddings_size
             )
-    
+
     #############################
     ###### Gradient Descent #####
     #############################
-    
+
     class gradient():
         @staticmethod
         def argmax_indices(U,Vd):
@@ -178,38 +179,38 @@ class NonlinearModel():
                 )[:,:,0],
                 axis=2
             )
-        
+
         @staticmethod
         def argmax_indices_modified(U,Vd,Vdbar):
             return np.argmin(
                 np.tensordot(Vdbar,U,axes=(2,2))[:,:,0] - np.tensordot(Vd,U,axes=(2,2))[:,:,0] ,
                 axis=2)
-        
+
         @staticmethod
         def dJi(Ui,argmax_indices,Vd,Vdbar,T,hinge_param=1):
             '''
             Note that Ui has only the relevant vector (interest unit), while U has all vectors.
             Steps are outlined below.
             '''
-            
+
             #see if it adds up to more than 0, if it does, it counts toward the cost.
             cond = hinge_param + np.tensordot(Ui,Vdbar,axes=(2,2))[0,0] - np.tensordot(Ui,Vd,axes=(2,2))[0,0] > 0
-            
+
             #gradient
             g = Vdbar - Vd
-            
+
             #multiply the calculated gradient by the condition (true and false translate to 1 and 0)
             partial_gradient = g * cond[:,:,np.newaxis]
-            
+
             #the next part applies the gradient to only the relevant interest unit
             broadcast_gradient=partial_gradient[:,np.newaxis].repeat(T,axis=1)
-            
+
             #boolean matrix tells which interest unit to update
             boolean_matrix = np.equal(argmax_indices[:,np.newaxis],np.arange(T)[np.newaxis,:,np.newaxis])
 
             return np.sum(broadcast_gradient * boolean_matrix[:,:,:,np.newaxis], axis=2)
-        
-        
+
+
         @staticmethod
         def J(Ui,Vd,Vdbar,hinge_param=1):
             '''
@@ -222,7 +223,7 @@ class NonlinearModel():
                 )
             )
 
-        
+
     def get_Vdbar_test(self,test_size=128,embeddings_size=250):
         '''
         Get Vdbar for gd validation (used if test=True)
@@ -233,8 +234,8 @@ class NonlinearModel():
                 test_size,
                 embeddings_size=embeddings_size,
             )
-        
-        
+
+
 
     def gradient_descent_nonlinear(
         self,
@@ -250,18 +251,18 @@ class NonlinearModel():
         readj_interval=1,
         gd_algorithm = None
     ):
-        
+
         self.reset_errors()
-        
+
         batch_mult = int(batch_size/size)
-        
+
         if gd_algorithm == 'rprop':
             gd_algorithm = np.sign
         else:
             gd_algorithm = lambda x: x
 
         for iteration in tqdm(range(max_iterations)):
-            
+
             #get vdbar for gradient calculation
             Vdbar = NonlinearModel.dbar.get_embedding_vectors(
                 self.item_embeddings,
@@ -271,7 +272,7 @@ class NonlinearModel():
                 size*batch_mult,
                 embeddings_size=embeddings_size,
             )
-            
+
             ##readjustment interval
             if iteration % readj_interval == 0:
                 if use_vdbar_for_interest_unit == True:
@@ -286,10 +287,10 @@ class NonlinearModel():
                 axis=1
             )
 
-            
+
 
             ### UPDATE ###
-            self.U = self.U - alpha / batch_mult * gd_algorithm(NonlinearModel.gradient.dJi( 
+            self.U = self.U - alpha / batch_mult * gd_algorithm(NonlinearModel.gradient.dJi(
                 Ui.repeat(batch_mult,axis=1), ##
                 argmax_indices.repeat(batch_mult,axis=1),
                 self.Vd.repeat(batch_mult,axis=1), ##
@@ -328,18 +329,18 @@ class NonlinearModel():
                     )
 
                 return None
-            
+
             iteration += 1
-    
+
     ################
     ## PREDICTION ##
     ################
-    
+
     def score_all(self):
         '''
         Score all Ui x V pairs
         Output should be U x T x |items|
-        Output should be flattened so 
+        Output should be flattened so that it's a list of T times the number of items |V| for each user
         '''
         self.all_scores = np.tensordot(
             self.U,
@@ -347,13 +348,16 @@ class NonlinearModel():
         )
 
     def filter_scores(self):
+        '''
+        filter out the items already seen by each user
+        '''
         #ones in training set
         already_seen = self.user_data['click_article_id'].to_numpy().reshape((self.n_users,-1))
-        
+
         #change score to -inf for those ones so they won't be considered.
         np.put_along_axis(self.all_scores,already_seen[:,np.newaxis],-np.inf,axis=2)
-        
-    
+
+
     def rank_scores(self):
         start = time()
         self.ranked = np.argsort(
@@ -362,7 +366,7 @@ class NonlinearModel():
             kind='quicksort'
         ) #need to make sure the reshape is doing what I think it's doing
         print(time()-start, 'seconds to sort articles by rank.')
-        
+
     def get_best_recommendations(self,threshold):
         self.recommended = np.nonzero(self.ranked < threshold)[1].reshape(self.n_users,threshold) % self.len_
 
@@ -375,7 +379,7 @@ class NonlinearModel():
                 sum_ += i/idx
                 i +=1
         return(sum_)
-    
+
     def evaluate(self,test_data,threshold,max_len):
         '''
         max_len is used because there has to be a maximum number of articles per user.
@@ -385,25 +389,25 @@ class NonlinearModel():
         self.score_all()
         self.filter_scores()
         self.rank_scores()
-        
+
         self.get_best_recommendations(threshold)
         recommended = self.recommended
-        
+
         start = time()
-        
+
         reshaped = np.hstack(test_data.groupby('user_id').apply(
             #fill with -1 for masking
             lambda g: np.pad(g.click_article_id.to_numpy(),(0,max_len-len(g.click_article_id)),'constant',constant_values=-1)
         )).reshape(-1,max_len)
-        
+
 
         ground_truth = np.ma.masked_equal(reshaped,-1)[:,:,np.newaxis]
-        
+
         eval_ = np.sum(np.equal(recommended[:,np.newaxis],ground_truth),axis=1)
-        
+
         self.mAP = np.mean([NonlinearModel.apk(list_) for list_ in eval_])
-        
+
 
         print('Mean Average Precision:',self.mAP)
-        
+
         print(time() - start, 'seconds to evaluate.')
