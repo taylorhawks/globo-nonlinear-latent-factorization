@@ -19,8 +19,7 @@ class NonlinearModel():
         )
         #normalize user vectors
         if norm_U == True:
-
-            self.U /= np.linalg.norm(self.U, axis=2, keepdims=True)
+            self.normalize_U()
 
             #self.U = self.U / np.linalg.norm(self.U, axis=2, keepdims=True)
 
@@ -33,6 +32,9 @@ class NonlinearModel():
         concatenates both user data and user vectors
         '''
         pass
+
+    def normalize_U(self):
+        self.U /= np.linalg.norm(self.U, axis=2, keepdims=True)
 
     def reset_errors(self):
         self.errors = []
@@ -272,7 +274,8 @@ class NonlinearModel():
         validation_hinge=1,
         max_iterations=500,
         readj_interval=1,
-        gd_algorithm = None
+        gd_algorithm = None,
+        norm_U = False,
     ):
         '''
         optimize user vectors.
@@ -288,6 +291,7 @@ class NonlinearModel():
         max_iterations - number of rounds of optimization
         readj_interval - how many iterations before assignment of items to their best interest unit is recalculated
         gd_algorithm - if 'rprop', learning rate is step size
+        norm_U - re-normalize U at each step
         '''
         # self.reset_errors()
 
@@ -335,6 +339,9 @@ class NonlinearModel():
                 self.T,
                 hinge_param=hinge_param))
             ###############
+
+            if norm_U == True:
+                self.normalize_U()
 
             if test == True:
                 #get Vdbar
