@@ -27,6 +27,13 @@ class NonlinearModel():
         self.n_users = int(self.user_data.shape[0]/size)
         self.reset_errors()
 
+    def __add__(self,object):
+        '''
+        combine models
+        concatenates both user data and user vectors
+        '''
+        pass
+
     def reset_errors(self):
         self.errors = []
 
@@ -267,7 +274,21 @@ class NonlinearModel():
         readj_interval=1,
         gd_algorithm = None
     ):
+        '''
+        optimize user vectors.
 
+        alpha - learning rate
+        size - number of items per user in training data
+        batch_size - items to train each user on per iteration
+        test_size - if running validation, batch size for calculating objective function
+        embeddings_size - number of dimensions for item embeddings
+        test - whether to calculate and return validation calculations for objective function (if false, just optimizes)
+        hinge_param - L1 regularization parameter for training
+        validation_hinge - L1 regularization parameter for validation
+        max_iterations - number of rounds of optimization
+        readj_interval - how many iterations before assignment of items to their best interest unit is recalculated
+        gd_algorithm - if 'rprop', learning rate is step size
+        '''
         # self.reset_errors()
 
         batch_mult = int(batch_size/size)
@@ -334,19 +355,19 @@ class NonlinearModel():
                     NonlinearModel.gradient.J(Ui,self.Vd.repeat(test_size/size,axis=1),Vdbar_test,hinge_param=validation_hinge) / test_size
                 )
 
-            if iteration == max_iterations - 1:
-                if test == True:
+            #if iteration == max_iterations - 1:
+        if test == True:
 
-                    plt.figure(figsize=(12,8))
-                    plt.xlabel('Iterations')
-                    sns.lineplot(
-                        x = range(len(self.errors)),
-                        y = self.errors
-                    )
+            plt.figure(figsize=(12,8))
+            plt.xlabel('Iterations')
+            sns.lineplot(
+                x = range(len(self.errors)),
+                y = self.errors
+            )
 
-                return None
+        return None
 
-            iteration += 1
+            #iteration += 1
 
     ################
     ## PREDICTION ##
