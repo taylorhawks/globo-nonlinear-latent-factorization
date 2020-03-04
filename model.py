@@ -5,7 +5,7 @@ from time import time
 import matplotlib.pyplot as plt
 
 class NonlinearModel():
-    def __init__(self, user_data, item_embeddings, size=8, embeddings_size=250, T=1):
+    def __init__(self, user_data, item_embeddings, size=8, embeddings_size=250, T=1,norm_U=False):
         self.user_data = user_data
         self.item_embeddings = item_embeddings
         self.len_ = self.item_embeddings.shape[0]
@@ -17,6 +17,13 @@ class NonlinearModel():
         self.U = self.initialize_user_vectors(
             size=size,embeddings_size=embeddings_size
         )
+        #normalize user vectors
+        if norm_U == True:
+
+            self.U /= np.linalg.norm(self.U, axis=2, keepdims=True)
+
+            #self.U = self.U / np.linalg.norm(self.U, axis=2, keepdims=True)
+
         self.n_users = int(self.user_data.shape[0]/size)
         self.reset_errors()
 
@@ -218,9 +225,16 @@ class NonlinearModel():
             Total cost calculation. Used if test=True.
             '''
             cost = hinge_param + np.tensordot(Ui,Vdbar,axes=(2,2))[0,0] - np.tensordot(Ui,Vd,axes=(2,2))[0,0]
+
+            # maxed = np.max(
+            #     [np.zeros((cost.shape[0],cost.shape[1])), cost], axis = 0
+            # )
+            #
+            # print(maxed.shape)
+
             return np.sum(
                 np.max(
-                    [np.zeros((cost.shape[0],cost.shape[1])), cost], axis = 1
+                    [np.zeros((cost.shape[0],cost.shape[1])), cost], axis = 0
                 )
             )
 
@@ -248,6 +262,7 @@ class NonlinearModel():
         test=True,
         use_vdbar_for_interest_unit=False,
         hinge_param=1,
+        validation_hinge=1,
         max_iterations=500,
         readj_interval=1,
         gd_algorithm = None
@@ -316,7 +331,7 @@ class NonlinearModel():
                 #add the error at this step to the list of errors so it can be graphed
                 #note that this is with a different Vdbar than the one used to calculate gradient
                 self.errors.append(
-                    NonlinearModel.gradient.J(Ui,self.Vd.repeat(test_size/size,axis=1),Vdbar_test,hinge_param=1) / test_size
+                    NonlinearModel.gradient.J(Ui,self.Vd.repeat(test_size/size,axis=1),Vdbar_test,hinge_param=validation_hinge) / test_size
                 )
 
             if iteration == max_iterations - 1:
