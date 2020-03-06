@@ -165,13 +165,11 @@ img
 - sorting algorithms
 
 ### To-Do:
-- `__add__` method for pipeline
-- Update optimization/gradient descent portion
+- Expand on evaluation (calculate p-values)
 - Write up "implementation"
 
 #### Further Improvements
  - Variable sizes per user in training set (requires forward-filling (or back-filling) with NANs)
- - Investigate why clustering doesn't work for k > n/2
 
 
 ## Works Cited and Further Reading
@@ -179,3 +177,5 @@ img
 - [Weston 2011](https://www.researchgate.net/publication/220815909_WSABIE_Scaling_up_to_large_vocabulary_image_annotation)
 - [Keqin 2008](https://www.researchgate.net/publication/221324580_A_New_Effective_Collaborative_Filtering_Algorithm_Based_on_User's_Interest_Partition)
 - [Yasdi](https://www.patrickbaudisch.com/interactingwithrecommendersystems/WorkingNotes/RaminYasdiAcquisitionOfUsersInterests.pdf)
+- [Evaluating Information Retrieval
+Algorithms with Significance Testing](https://engineering.purdue.edu/kak/SignificanceTesting.pdf)
