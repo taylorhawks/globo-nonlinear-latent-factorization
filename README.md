@@ -167,6 +167,7 @@ img
 ### To-Do:
 - Expand on evaluation (calculate p-values)
 - Write up "implementation"
+- Medium writeup
 
 #### Further Improvements
  - Variable sizes per user in training set (requires forward-filling (or back-filling) with NANs)
